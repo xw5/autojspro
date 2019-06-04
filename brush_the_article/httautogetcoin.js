@@ -16,7 +16,7 @@ function navigator() {
     if (title) {
         //click(title.bounds().left,title.bounds().top-200);
         try{
-          //collectTimeAward();
+          collectTimeAward();
           title.parent().click();
         } catch(err) {
           console.log("点击去文章失败", err);
@@ -92,11 +92,11 @@ function clickMore() {
 // 收集时段奖励
 function collectTimeAward() {
   try{
-    var awardBtn = id("receive_layout").text("点击领取").findOnce();
+    var awardBtn = text("点击领取").findOnce();
     if (awardBtn) {
       awardBtn.parent().click();
       sleep(600);
-      text("忽略").findOnce().click();
+      text("忽略").findOnce().parent().click();
       sleep(400);
       console.log("领取了一次时段奖励");
     }
