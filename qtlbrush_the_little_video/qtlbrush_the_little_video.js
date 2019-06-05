@@ -20,6 +20,7 @@ function scrollDownAction() {
     console.log("当前的activity", activityStr);
     if (activityStr == "com.jifen.qkbase.main.MainActivity") {
       sleep(pageScrollTime*1000);
+      collectClick();
       swipe(swiperX,swiperY-300,swiperX,300,500);
       sleep(1000);
     }
@@ -32,12 +33,13 @@ function randomScrollCount() {
   return Math.ceil(baseScrollTime + Math.random()*10)
 }
 
-// 收集时段奖励
+// 模拟一次点赞操作
 function collectClick() {
   try{
-    if (Math.random() * 10 > 7) {
+    if (Math.random() * 10 >= 7) {
       like.click();
       sleep(300);
+      console.log("点赞成功");
     }
   }catch(err) {
     console.log("点赞失败", err);
