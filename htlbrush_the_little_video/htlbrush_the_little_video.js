@@ -17,7 +17,7 @@ function scrollDownAction() {
   let activityStr = currentActivity();
   let swiperX = Math.floor(device.width/2);
   let swiperY = device.height;
-  let ad = text("广告").findOnce();
+  let ad = id("tv_ad_src").findOnce();
   console.log("当前的activity", activityStr);
   if (activityStr == "com.cashtoutiao.alivideodetail.AliSmallVideoActivity") {
     if (!ad) {
