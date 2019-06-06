@@ -18,12 +18,7 @@ function navigator() {
       //click(title.bounds().left,title.bounds().top-200);
       try{
         //collectTimeAward();
-        let closeTj = text("忽  略").findOnce();
-        console.log(closeTj);
-        if (closeTj) {
-          closeTj.click();
-          sleep(800);
-        }
+        closetTjfn();
         title.parent().click();
       } catch(err) {
         console.log("点击去文章失败", err);
@@ -43,6 +38,16 @@ function navigator() {
       initSelect();
       sleep(500);
       navigator();
+  }
+}
+
+// 去掉推荐弹窗
+function closetTjfn() {
+  let closeTj = text("忽  略").findOnce();
+  console.log(closeTj);
+  if (closeTj) {
+    closeTj.click();
+    sleep(800);
   }
 }
 
