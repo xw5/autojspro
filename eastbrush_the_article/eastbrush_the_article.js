@@ -8,41 +8,42 @@ var maxTitle = 0;
 
 // 执行跳转
 function navigator() {
+  console.log(currentActivity(),"com.songheng.eastfirst.common.view.activity.MainActivity")
   if(currentActivity() != "com.songheng.eastfirst.common.view.activity.MainActivity") {
     return;
   }
-    var title = titles[nowIndex];
-    nowIndex ++;
-    if (title) {
-        //click(title.bounds().left,title.bounds().top-200);
-        try{
-          //collectTimeAward();
-          let closeTj = text("忽  略").findOne();
-          console.log(closeTj);
-          if (closeTj) {
-            closeTj.click();
-            sleep(800);
-          }
-          title.parent().click();
-        } catch(err) {
-          console.log("点击去文章失败", err);
-          navigator();
-          return;
+  var title = titles[nowIndex];
+  nowIndex ++;
+  if (title) {
+      //click(title.bounds().left,title.bounds().top-200);
+      try{
+        //collectTimeAward();
+        let closeTj = text("忽  略").findOnce();
+        console.log(closeTj);
+        if (closeTj) {
+          closeTj.click();
+          sleep(800);
         }
-        sleep(1000);
-        scrollDownAction();
-    }
-    if (nowIndex >= maxTitle) {
-        nowIndex = 0;
-        console.log("屏幕宽:"+device.width+"屏幕高"+device.height+"可点集长:"+maxTitle+"可滚动次数:"+pageScrollTime+"当前在点哪一项"+nowIndex);
-        swipe(device.width/2,device.height+400,device.width/2,300,800);
-        //scrollDown();
-        //className("android.widget.HorizontalScrollView").findOne().scrollDown();
-        sleep(1500);
-        initSelect();
-        sleep(500);
+        title.parent().click();
+      } catch(err) {
+        console.log("点击去文章失败", err);
         navigator();
-    }
+        return;
+      }
+      sleep(1000);
+      scrollDownAction();
+  }
+  if (nowIndex >= maxTitle) {
+      nowIndex = 0;
+      console.log("屏幕宽:"+device.width+"屏幕高"+device.height+"可点集长:"+maxTitle+"可滚动次数:"+pageScrollTime+"当前在点哪一项"+nowIndex);
+      swipe(device.width/2,device.height+400,device.width/2,300,800);
+      //scrollDown();
+      //className("android.widget.HorizontalScrollView").findOne().scrollDown();
+      sleep(1500);
+      initSelect();
+      sleep(500);
+      navigator();
+  }
 }
 
 
@@ -59,6 +60,7 @@ function initSelect() {
       titles.push(titlesTemp1[i]);
     }
     maxTitle = titles.length;
+    console.log(maxTitle);
     pageScrollTime = randomScrollCount();
 }
 
@@ -75,9 +77,9 @@ function scrollDownAction() {
         navigator()
         return;
     }
-    sleep(1000);
+    sleep(800);
     gesture(500,[device.width/2,device.height/2+400],[device.width/2,device.height/2-300]);
-    sleep(1000);
+    sleep(800);
     clickMore();
     pageScrollTime --;
     console.log("滚动次数",pageScrollTime);
