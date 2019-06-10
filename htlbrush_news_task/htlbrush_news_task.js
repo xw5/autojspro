@@ -21,7 +21,7 @@ function navigator() {
     back();
     sleep(1000);
     text("立即领取").findOne().click();
-    sleep(1000);
+    sleep(1500);
     text("忽略").findOne().click();
     sleep(1000);
     navigator();
